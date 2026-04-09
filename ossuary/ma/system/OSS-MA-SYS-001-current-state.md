@@ -1,4 +1,4 @@
-markdown---
+---
 ossuary_id: OSS-MA-SYS-001
 altitude: System
 domain: M&A Integration Architecture

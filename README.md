@@ -1,4 +1,4 @@
-markdown# Miskatonic
+# Miskatonic
 
 A governed AI platform for enterprise architecture practice.
 
