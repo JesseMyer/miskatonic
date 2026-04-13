@@ -17,7 +17,10 @@ region: declared per engagement
 ## Motivational Layer
 
 ### Elicited (Aspirational)
-Captured directly from client stakeholders. Represents stated intent: the strategic rationale for the acquisition as articulated by leadership. Recorded as-heard. Flagged: aspirational. Propaganda-risk annotation applied where elicited narrative diverges from documented evidence.
+Captured directly from client stakeholders. Represents stated intent: the strategic
+rationale for the acquisition as articulated by leadership. Recorded as-heard.
+Flagged: aspirational. Propaganda-risk annotation applied where elicited narrative
+diverges from documented evidence.
 
 | Construct | Declaration |
 |---|---|
@@ -26,7 +29,9 @@ Captured directly from client stakeholders. Represents stated intent: the strate
 | Objective | [Elicited from client: measurable targets against each Goal] |
 
 ### Consumed (Curated)
-Captured from requirements documentation, board materials, deal thesis, integration mandate. Represents the governed record of intent. Flagged: curated. Delta between elicited and consumed is a Bureau finding candidate.
+Captured from requirements documentation, board materials, deal thesis, integration
+mandate. Represents the governed record of intent.
+Flagged: curated. Delta between elicited and consumed is a Bureau finding candidate.
 
 | Construct | Declaration |
 |---|---|
@@ -35,7 +40,10 @@ Captured from requirements documentation, board materials, deal thesis, integrat
 | Objective | [From documentation: measurable commitments made to board or regulators] |
 
 ## Organization Structure (As-Reported)
-Captured day one. Represents what the client believes their organization is. Contradictions surfaced by capability and function analysis are Bureau findings, not corrections to this record.
+
+Captured day one. Represents what the client believes their organization is.
+Contradictions surfaced by capability and function analysis are Bureau findings,
+not corrections to this record. This is the current-state org as declared.
 
 | Entity | Type | Notes |
 |---|---|---|
@@ -44,16 +52,36 @@ Captured day one. Represents what the client believes their organization is. Con
 | [Shared/overlap units] | Organization Unit | Flagged for Subsystem decomposition |
 
 ## Capability Landscape
-The combined enterprise presents a duplicated capability map. Both entities carry full stacks across core business domains. No rationalization has occurred. No authoritative capability model spans both entities.
 
-- Capability redundancy is universal. Every core domain has at least two instantiations per legacy entity.
-- Integration topology is ungoverned. Combined integration surface is not documented, not rationalized.
-- Data ownership is contested. No canonical model declared. No authoritative source of record designated.
-- Operating models diverge. Technology governance, architecture review, vendor management differ.
-- Strategic alignment is assumed, not verified. Delta between elicited and consumed motivational layers is the first Bureau finding candidate.
+The combined enterprise presents a duplicated capability map. Both entities carry full
+stacks across core business domains: customer management, product administration, finance
+and accounting, human capital, and enterprise integration. No rationalization has occurred.
+No authoritative capability model spans both entities.
+
+Key characteristics:
+
+- **Capability redundancy is universal.** Every core domain has at least two instantiations,
+  one per legacy entity. Prior M&A activity may produce three or more competing
+  instantiations of a single capability.
+
+- **Integration topology is ungoverned.** Each entity has evolved point-to-point integration
+  patterns over years of organic growth. The combined integration surface is not documented,
+  not rationalized, and not visible to either architecture team.
+
+- **Data ownership is contested.** Master data domains exist in both entities with
+  overlapping but non-identical semantics. No canonical model declared. No authoritative
+  source of record designated across the combined enterprise.
+
+- **Operating models diverge.** Technology governance, architecture review, vendor
+  management, and delivery methodology differ between entities.
+
+- **Strategic alignment is assumed, not verified.** Delta between elicited and consumed
+  motivational layers is the first Bureau finding candidate.
 
 ## Value Streams (Conditional: Declare if Available)
-Each Value Stream requires qualification before construct typing is confirmed. Vril qualification prompts govern this elicitation. Hold declaration until answered.
+
+Each Value Stream requires qualification before construct typing is confirmed.
+Vril qualification prompts govern this elicitation. Hold declaration until answered.
 
 | Candidate | Triggering Capability | Qualification Required | Typed As |
 |---|---|---|---|
@@ -62,6 +90,10 @@ Each Value Stream requires qualification before construct typing is confirmed. V
 | Financial Close | [Finance & Accounting Capability] | Is this driven by regulatory obligation or internal governance? | Process with Control and Contract implications, pending |
 
 ## Architectural Risk Profile
+
+Each risk maps to the broken or absent metamodel construct relationship.
+Bureau scores by construct dimension. Bureau suggests best-practice remediation
+per Ossuary reference tier, scoped to declared region.
 
 | Risk | Severity | Broken Construct Relationship | Bureau Suggestion Triggered |
 |---|---|---|---|
@@ -73,4 +105,9 @@ Each Value Stream requires qualification before construct typing is confirmed. V
 | Motivational Delta | High | Driver/Goal: elicited and curated records diverge | Yes |
 
 ## Ossuary Notes
-Foundational current-state exemplar for M&A at System altitude. All Subsystem-altitude current-state patterns must cohere against this document. Bureau scoring at System altitude uses this pattern as the baseline deviation reference. Pelagic Wave 0 initiated from this state. Ossuary reference tier scoped to declared region before Bureau suggestions are generated.
+
+This pattern is the foundational current-state exemplar for M&A at System altitude.
+All Subsystem-altitude current-state patterns must cohere against this document.
+Bureau scoring at System altitude uses this pattern as the baseline deviation reference.
+Pelagic Wave 0 (Discovery and Stabilization) is initiated from this state.
+Ossuary reference tier scoped to declared region before Bureau suggestions are generated.
