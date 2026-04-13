@@ -78,7 +78,7 @@ The governing sentence: Vril invokes Ossuary. Tenebrous renders the view. Bureau
 ## The Build Sequence
 
 ### Phase 0 — Governing Identity
-Complete. One repo. One README. One manifesto. Six subsystem folders. Live at github.com/JesseMyer/miskatonic.
+Complete. One repo. One README. Six subsystem folders scaffolded: `vril`, `ossuary`, `tenebrous`, `bureau`, `pelagic`, `grimoire`.
 
 ### Phase 1 — Knowledge Foundation
 In progress: approximately 60%. Ossuary M&A corpus: System, Subsystem, and Component altitude complete. 24 M&A patterns. 3 BCDR illustrative patterns. Vril qualification prompt type complete. Ossuary reference tier designed. Sequence and Schema altitudes remaining. Vril M&A prompt library remaining.
