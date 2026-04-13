@@ -6,20 +6,67 @@ state: Target State
 output_type: Pattern
 subsystem: Customer Domain
 togaf_constructs:
-  primary: [declared per pattern]
-  secondary: [declared per pattern]
+  primary: [Process, Application Service]
+  secondary: [Logical Application Component, Interface, Application Service]
 adm_phase: omit
 bureau_calibration: false
 region: declared per engagement
-parent_subsystem: OSS-MA-COM-CUS-00x
+parent_subsystem: OSS-MA-COM-CUS-002
 ---
 
-# M&A Integration Architecture — Sequence Altitude — Target State
+# M&A Integration Architecture — Sequence Altitude — Customer Domain — Target State
 
-## Context
+## Altitude and Parentage
 
-[Full pattern content as produced in session. Retrieve from conversation history by searching ossuary_id: OSS-MA-SEQ-CUS-002]
+This pattern sits at **Sequence** altitude under the M&A Integration Architecture domain.
+It sequences governed interaction order, control points, and handoffs for **Customer Domain**,
+descending from Component pattern `OSS-MA-COM-CUS-002`. It does not restate Component inventory;
+it orders how those components collaborate through time.
+
+**Sequence focus:** customer journey orchestration, identity resolution handoffs, consent and preference events.
+
+## Entity A — Local Interaction Order
+
+Entity A executes a coherent local sequence within its legacy boundary. Ordering is
+implicit in application design and operations runbooks, not declared as an enterprise
+sequence model. Retries, compensations, and idempotency keys are **application-local**.
+
+## Entity B — Local Interaction Order
+
+Entity B maintains a parallel local sequence with different orchestration assumptions,
+different error semantics, and different monitoring. Sequences are **not comparable**
+across entities without translation and reconciliation.
+
+## Cross-Entity Sequence (As-Reported)
+
+At target state, a single governed sequence model spans both entities. Each interaction declares a triggering Application Service, a consumer, delivery semantics, and a terminal condition aligned to the unified backbone.
+
+## Ordering Guarantees and Control Points
+
+| Control point | Declared? | Evidence | Bureau note |
+|---|---|---|---|
+| Start trigger | [per engagement] | [elicited/consumed] | Missing trigger is a qualification hold |
+| Terminal condition | [per engagement] | [elicited/consumed] | Ambiguous terminal condition blocks typing |
+| Idempotency strategy | [per engagement] | [design artifact] | Required for backbone-mediated hops |
+| Compensation boundary | [per engagement] | [runbook/design] | Required before rationalization waves |
+
+## Failure, Retry, and Compensation Posture
+
+Dual entity operations produce **non-comparable** failure semantics until rationalized.
+Sequence altitude requires explicit declaration of: maximum retry, dead-letter handling,
+human intervention escalation path, and whether partial success is permitted.
+
+## Architectural Risk Profile
+
+| Risk | Severity | Broken construct relationship | Bureau suggestion |
+|---|---|---|---|
+| Invisible cross-entity hops | Critical | Application Service: orchestration outside governed boundary | Yes |
+| Competing sequence semantics | High | Process: duplicate or conflicting terminal conditions | Yes |
+| Missing idempotency | High | Application Service: unsafe replay under migration | Yes |
+| Manual sequence bridges | High | Control: ungoverned compensating controls | Yes |
 
 ## Ossuary Notes
 
-See conversation history for complete pattern body.
+Sequence patterns must remain coherent with Subsystem and Component parents. Pelagic
+wave gates may require sequence verification before advancing. Grimoire records sequence
+changes as disposition decisions when cutover alters interaction order.

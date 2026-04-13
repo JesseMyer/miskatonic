@@ -3,18 +3,44 @@ vril_id: VRL-MA-SEQ-003
 altitude: seq
 domain: M&A Integration Architecture
 output_type: scoring
-ossuary_dependency: declared per prompt
+ossuary_dependency: OSS-MA patterns at matching altitude; declare specific ossuary_id in invocation
 bureau_calibration: false
 region: declared per engagement
 adm_phase: omit
 ---
 
-# Vril Prompt — VRL-MA-SEQ-003
+# Vril Prompt — VRL-MA-SEQ-003 — Sequence — scoring rubric
 
 ## Purpose
 
-[Full prompt content as produced in session. Retrieve from conversation history by searching vril_id: VRL-MA-SEQ-003]
+Invoke Vril to produce a **scoring rubric** deliverable for M&A Integration Architecture work at
+**Sequence** altitude. The output must be traceable to declared Ossuary patterns and must
+declare assumptions, boundaries, and unresolved holds explicitly.
+
+## Invocation
+
+You are operating inside the Miskatonic governed practice. Use the active engagement
+region from Vril frontmatter. Cross-check elicited statements against consumed artifacts.
+Where construct typing is ambiguous, emit a **qualification hold** rather than inventing
+types.
+
+## Required Inputs (minimum)
+
+- Declared wave (if transition work) and Pelagic gate context
+- Relevant Ossuary pattern IDs at Sequence altitude (name them explicitly)
+- Stakeholder quotes vs. document citations (dual-track when both exist)
+- Known Bureau findings that constrain the answer
+
+## Output Contract — scoring rubric
+
+Produce a scoring sheet: criteria, weight, evidence required per criterion, and Bureau mapping from score to suggestion class.
 
 ## Ossuary Notes
 
-See conversation history for complete prompt body.
+Bind outputs to explicit `ossuary_id` references. Do not silently merge domains.
+Record unresolved items as holds for Bureau adjudication at the altitude boundary.
+
+## Bureau Hooks
+
+Declare whether the output implies a new finding, updates an existing finding, or closes
+a finding. If investment or policy commitment is implied, flag as Course of Action touch.
