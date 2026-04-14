@@ -1,0 +1,794 @@
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
+@prefix dc:    <http://purl.org/dc/elements/1.1/> .
+@prefix dct:   <http://purl.org/dc/terms/> .
+@prefix pav:   <http://purl.org/pav/> .
+
+@prefix togaf: <http://www.semanticweb.org/ontologies/2020/4/OntologyTOGAFContentMetamodel.owl#> .
+@prefix msk:   <https://github.com/JesseMyer/miskatonic/ontology/togaf-9.2/governance#> .
+
+# ============================================================
+# ONTOLOGY DECLARATION
+# ============================================================
+
+<https://github.com/JesseMyer/miskatonic/ontology/togaf-9.2/OntologyTOGAFContentMetamodelV2-Miskatonic.ttl>
+    a owl:Ontology ;
+    owl:versionInfo "1.0.0-miskatonic-poc" ;
+    dct:title "TOGAF 9.2 Content Metamodel Ontology — Miskatonic Fork" ;
+    dct:description """Miskatonic governed fork of the TOGAF 9.2 Content Metamodel OWL Ontology.
+        Source: cadmiumkitty/togaf-content-metamodel-ontology v2.0.0 (CC-BY-SA-4.0).
+        Original formalization: Aurona Gerber, Paula Kotze, Alta van der Merwe.
+        Updated to 9.2: Eugene Morozov (cadmiumkitty / Dalston Semantics Ltd).
+        Miskatonic governance: Jesse Myer.
+        License of this fork: CC-BY-SA-4.0 (ShareAlike inherited from source).
+        TOGAF is a registered trademark of The Open Group.
+        Commercial use requires TOGAF Annual Commercial License from The Open Group.""" ;
+    dct:source <https://github.com/cadmiumkitty/togaf-content-metamodel-ontology> ;
+    dct:license <https://creativecommons.org/licenses/by-sa/4.0/> ;
+    dct:creator "Jesse Myer" ;
+    dct:contributor "Aurona Gerber", "Eugene Morozov (cadmiumkitty)" ;
+    pav:version "1.0.0-miskatonic-poc" ;
+    msk:forkGovernanceRef <https://github.com/JesseMyer/miskatonic/ontology/togaf-9.2/FORK-GOVERNANCE.md> ;
+    msk:phaseIntroduced "Phase 2 Preview / PoC" ;
+    msk:knownGaps """Extension modules not formalized: Motivation, Governance, Services,
+        Security, SOA, Data, Infrastructure extensions from TOGAF 9.2 chapter 30.4.
+        Attributes not modeled: construct attribute profiles from TOGAF 9.2 chapter 30.3.
+        Version pinned to 9.2: not updated to TOGAF 10th Edition Enterprise Metamodel.
+        Miskatonic deviations documented in FORK-GOVERNANCE.md.""" .
+
+# ============================================================
+# GENERAL ENTITIES
+# ============================================================
+
+togaf:Principle
+    a owl:Class ;
+    rdfs:label "Principle" ;
+    rdfs:comment "A qualitative statement of intent that should be met by the architecture." ;
+    msk:togafDomain "General Entities" ;
+    msk:figureRef "30-7" .
+
+togaf:Constraint
+    a owl:Class ;
+    rdfs:label "Constraint" ;
+    rdfs:comment "An external factor that prevents an organization from pursuing particular approaches to meet its goals." ;
+    msk:togafDomain "General Entities" ;
+    msk:figureRef "30-7" .
+
+togaf:Assumption
+    a owl:Class ;
+    rdfs:label "Assumption" ;
+    rdfs:comment "A statement of presumed conditions that have not been confirmed true." ;
+    msk:togafDomain "General Entities" ;
+    msk:figureRef "30-7" .
+
+togaf:Requirement
+    a owl:Class ;
+    rdfs:label "Requirement" ;
+    rdfs:comment "A quantitative statement of business need that must be met by a particular architecture." ;
+    msk:togafDomain "General Entities" ;
+    msk:figureRef "30-7" .
+
+togaf:Location
+    a owl:Class ;
+    rdfs:label "Location" ;
+    rdfs:comment "A place where business activity takes place and/or architecture assets are deployed." ;
+    msk:togafDomain "General Entities" ;
+    msk:figureRef "30-7" .
+
+togaf:Gap
+    a owl:Class ;
+    rdfs:label "Gap" ;
+    rdfs:comment "A statement of difference between two states. Used in gap analysis where the difference between Baseline and Target Architecture is identified." ;
+    msk:togafDomain "General Entities" ;
+    msk:figureRef "30-7" .
+
+togaf:WorkPackage
+    a owl:Class ;
+    rdfs:label "Work Package" ;
+    rdfs:comment "A set of actions identified to achieve one or more objectives for the business. A Work Package can be a part of a project, a complete project, or a program." ;
+    msk:togafDomain "General Entities" ;
+    msk:figureRef "30-7" .
+
+togaf:Capability
+    a owl:Class ;
+    rdfs:label "Capability" ;
+    rdfs:comment "An ability that an organization, person, or system possesses. Capabilities are typically expressed in general and high-level terms and require a combination of organization, people, processes, and technology to achieve." ;
+    msk:togafDomain "General Entities" ;
+    msk:figureRef "30-7" ;
+    msk:miskatonicPrimary "true"^^xsd:boolean ;
+    msk:miskatonicNote "Primary construct in M&A Ossuary corpus at System and Subsystem altitude." .
+
+# ============================================================
+# BUSINESS ARCHITECTURE — MOTIVATIONAL
+# ============================================================
+
+togaf:Driver
+    a owl:Class ;
+    rdfs:label "Driver" ;
+    rdfs:comment "An external or internal condition that motivates an organization to change." ;
+    msk:togafDomain "Business Architecture" ;
+    msk:togafSubDomain "Motivational" ;
+    msk:figureRef "30-7" ;
+    msk:miskatonicPrimary "true"^^xsd:boolean ;
+    msk:miskatonicNote "Dual-track capture: elicited and consumed Driver records are separate artifacts. Delta is a Bureau finding." .
+
+togaf:Goal
+    a owl:Class ;
+    rdfs:label "Goal" ;
+    rdfs:comment "A high-level statement of intent or direction for an organization." ;
+    msk:togafDomain "Business Architecture" ;
+    msk:togafSubDomain "Motivational" ;
+    msk:figureRef "30-7" ;
+    msk:miskatonicPrimary "true"^^xsd:boolean .
+
+togaf:Objective
+    a owl:Class ;
+    rdfs:label "Objective" ;
+    rdfs:comment "A time-bounded milestone for an organization used to demonstrate progress towards a Goal." ;
+    msk:togafDomain "Business Architecture" ;
+    msk:togafSubDomain "Motivational" ;
+    msk:figureRef "30-7" .
+
+togaf:Measure
+    a owl:Class ;
+    rdfs:label "Measure" ;
+    rdfs:comment "An indicator or factor that can be tracked, usually on an ongoing basis, to determine success or alignment with objectives and goals." ;
+    msk:togafDomain "Business Architecture" ;
+    msk:togafSubDomain "Motivational" ;
+    msk:figureRef "30-7" .
+
+# ============================================================
+# BUSINESS ARCHITECTURE — ORGANIZATIONAL
+# ============================================================
+
+togaf:CourseOfAction
+    a owl:Class ;
+    rdfs:label "Course of Action" ;
+    rdfs:comment "Direction and focus provided by strategic goals and objectives, often to deliver the value proposition characterized in the organization's strategy." ;
+    msk:togafDomain "Business Architecture" ;
+    msk:togafSubDomain "Organizational" ;
+    msk:figureRef "30-7" ;
+    msk:miskatonicPrimary "true"^^xsd:boolean ;
+    msk:miskatonicNote "Absence of Course of Action at current state is a Bureau finding: Governance Vacuum." .
+
+togaf:OrganizationUnit
+    a owl:Class ;
+    rdfs:label "Organization Unit" ;
+    rdfs:comment "A self-contained unit of resources with goals, objectives, and measures." ;
+    msk:togafDomain "Business Architecture" ;
+    msk:togafSubDomain "Organizational" ;
+    msk:figureRef "30-7" ;
+    msk:miskatonicPrimary "true"^^xsd:boolean ;
+    msk:miskatonicNote "Captured as-reported at current state. Contradictions surface at Subsystem altitude as Bureau findings. As-reported is a metamodel signal, not a correction target." .
+
+togaf:Actor
+    a owl:Class ;
+    rdfs:label "Actor" ;
+    rdfs:comment "A person, organization, or system that is outside the consideration of the architecture model but interacts with it." ;
+    msk:togafDomain "Business Architecture" ;
+    msk:togafSubDomain "Organizational" ;
+    msk:figureRef "30-7" .
+
+togaf:Role
+    a owl:Class ;
+    rdfs:label "Role" ;
+    rdfs:comment "The usual or expected function of an actor, or the part somebody plays in a particular operation or process." ;
+    msk:togafDomain "Business Architecture" ;
+    msk:togafSubDomain "Organizational" ;
+    msk:figureRef "30-7" .
+
+togaf:Location
+    a owl:Class ;
+    rdfs:label "Location" ;
+    rdfs:comment "A place where business activity takes place and/or architecture assets are deployed." ;
+    msk:togafDomain "Business Architecture" ;
+    msk:togafSubDomain "Organizational" ;
+    msk:figureRef "30-7" .
+
+# ============================================================
+# BUSINESS ARCHITECTURE — FUNCTIONAL
+# ============================================================
+
+togaf:BusinessCapability
+    a owl:Class ;
+    rdfs:label "Business Capability" ;
+    rdfs:comment "A particular ability or capacity that a business may possess or exchange to achieve a specific purpose or outcome." ;
+    msk:togafDomain "Business Architecture" ;
+    msk:togafSubDomain "Functional" ;
+    msk:figureRef "30-7" ;
+    msk:miskatonicPrimary "true"^^xsd:boolean ;
+    msk:miskatonicNote "Primary construct at all altitudes in M&A corpus. Capability redundancy at current state is a Bureau finding trigger." .
+
+togaf:ValueStream
+    a owl:Class ;
+    rdfs:label "Value Stream" ;
+    rdfs:comment "A representation of an end-to-end collection of value-adding activities that create an overall result for a customer, stakeholder, or end-user." ;
+    msk:togafDomain "Business Architecture" ;
+    msk:togafSubDomain "Functional" ;
+    msk:figureRef "30-7" ;
+    msk:miskatonicPrimary "true"^^xsd:boolean ;
+    msk:miskatonicNote "Conditional construct typing applies. Value Stream requires Vril qualification prompt before typing is confirmed. Hold declared until qualification answers received." .
+
+togaf:BusinessInformation
+    a owl:Class ;
+    rdfs:label "Business Information" ;
+    rdfs:comment "Information utilized and transformed by an organization as it delivers value to its stakeholders." ;
+    msk:togafDomain "Business Architecture" ;
+    msk:togafSubDomain "Functional" ;
+    msk:figureRef "30-7" .
+
+togaf:Product
+    a owl:Class ;
+    rdfs:label "Product" ;
+    rdfs:comment "An output that is produced by the enterprise for sale or internal use. Products are tangible." ;
+    msk:togafDomain "Business Architecture" ;
+    msk:togafSubDomain "Functional" ;
+    msk:figureRef "30-7" .
+
+togaf:Function
+    a owl:Class ;
+    rdfs:label "Function" ;
+    rdfs:comment "Delivers business capabilities closely aligned to an organization, but not necessarily explicitly governed by the organization." ;
+    msk:togafDomain "Business Architecture" ;
+    msk:togafSubDomain "Functional" ;
+    msk:figureRef "30-7" .
+
+togaf:Process
+    a owl:Class ;
+    rdfs:label "Process" ;
+    rdfs:comment "A sequence of activities that together achieve a specified outcome, can be decomposed into sub-processes and/or tasks." ;
+    msk:togafDomain "Business Architecture" ;
+    msk:togafSubDomain "Functional" ;
+    msk:figureRef "30-7" .
+
+togaf:Event
+    a owl:Class ;
+    rdfs:label "Event" ;
+    rdfs:comment "An organizational state change that triggers processing events." ;
+    msk:togafDomain "Business Architecture" ;
+    msk:togafSubDomain "Functional" ;
+    msk:figureRef "30-7" .
+
+togaf:BusinessService
+    a owl:Class ;
+    rdfs:label "Business Service" ;
+    rdfs:comment "Supports business capabilities through an explicitly defined interface and is explicitly governed by an organization." ;
+    msk:togafDomain "Business Architecture" ;
+    msk:togafSubDomain "Functional" ;
+    msk:figureRef "30-7" .
+
+togaf:Control
+    a owl:Class ;
+    rdfs:label "Control" ;
+    rdfs:comment "A decision-making step with accompanying decision criteria used to determine which of a number of paths in a process will be followed." ;
+    msk:togafDomain "Business Architecture" ;
+    msk:togafSubDomain "Functional" ;
+    msk:figureRef "30-7" ;
+    msk:miskatonicPrimary "true"^^xsd:boolean ;
+    msk:miskatonicNote "Absence of Control at current state maps to Governance Vacuum risk. Bureau wave gate enforcement is a Control instantiation." .
+
+togaf:Contract
+    a owl:Class ;
+    rdfs:label "Contract" ;
+    rdfs:comment "An agreement between a service consumer and a service provider that establishes functional and non-functional parameters for interaction." ;
+    msk:togafDomain "Business Architecture" ;
+    msk:togafSubDomain "Functional" ;
+    msk:figureRef "30-7" .
+
+togaf:ServiceQuality
+    a owl:Class ;
+    rdfs:label "Service Quality" ;
+    rdfs:comment "A predefined quality or performance characteristic for a service or contract that must be met." ;
+    msk:togafDomain "Business Architecture" ;
+    msk:togafSubDomain "Functional" ;
+    msk:figureRef "30-7" .
+
+# ============================================================
+# DATA ARCHITECTURE
+# ============================================================
+
+togaf:DataEntity
+    a owl:Class ;
+    rdfs:label "Data Entity" ;
+    rdfs:comment "An encapsulation of data that is recognized by a business domain expert as a thing. Logical data entities can be tied to applications, repositories, and services and may be structured according to implementation considerations." ;
+    msk:togafDomain "Data Architecture" ;
+    msk:figureRef "30-7" ;
+    msk:miskatonicPrimary "true"^^xsd:boolean ;
+    msk:miskatonicNote "Data sovereignty conflict at M&A current state: no authoritative Data Entity declared. Bureau finding trigger." .
+
+togaf:LogicalDataComponent
+    a owl:Class ;
+    rdfs:label "Logical Data Component" ;
+    rdfs:comment "A boundary zone that encapsulates related data entities to form a logical location to be held." ;
+    msk:togafDomain "Data Architecture" ;
+    msk:figureRef "30-7" .
+
+togaf:PhysicalDataComponent
+    a owl:Class ;
+    rdfs:label "Physical Data Component" ;
+    rdfs:comment "A boundary zone that encapsulates related data entities to form a physical location to be held. Physical data components will be realized through the use of technology components." ;
+    msk:togafDomain "Data Architecture" ;
+    msk:figureRef "30-7" .
+
+# ============================================================
+# APPLICATION ARCHITECTURE
+# ============================================================
+
+togaf:ApplicationService
+    a owl:Class ;
+    rdfs:label "Application Service" ;
+    rdfs:comment "An externally visible unit of functionality, provided by one or more components, that is meaningful to the environment and available through well-defined interfaces." ;
+    msk:togafDomain "Application Architecture" ;
+    msk:figureRef "30-7" ;
+    msk:miskatonicPrimary "true"^^xsd:boolean ;
+    msk:miskatonicNote "Integration surface opacity at M&A current state: ungoverned Application Services outside Logical Application Component boundary. Bureau finding: Shadow Integration Risk." .
+
+togaf:LogicalApplicationComponent
+    a owl:Class ;
+    rdfs:label "Logical Application Component" ;
+    rdfs:comment "An encapsulation of application functionality that is independent of a particular implementation." ;
+    msk:togafDomain "Application Architecture" ;
+    msk:figureRef "30-7" .
+
+togaf:PhysicalApplicationComponent
+    a owl:Class ;
+    rdfs:label "Physical Application Component" ;
+    rdfs:comment "An executable software element. A physical application component may be identified at design time as a specific software product or at implementation time." ;
+    msk:togafDomain "Application Architecture" ;
+    msk:figureRef "30-7" .
+
+togaf:InformationSystemService
+    a owl:Class ;
+    rdfs:label "Information System Service" ;
+    rdfs:comment "The automated elements of a business service. An information system service may deliver or support part or all of a business service." ;
+    msk:togafDomain "Application Architecture" ;
+    msk:figureRef "30-7" .
+
+# ============================================================
+# TECHNOLOGY ARCHITECTURE
+# ============================================================
+
+togaf:TechnologyService
+    a owl:Class ;
+    rdfs:label "Technology Service" ;
+    rdfs:comment "A technical capability required to provide enabling infrastructure that supports the delivery of applications." ;
+    msk:togafDomain "Technology Architecture" ;
+    msk:figureRef "30-7" .
+
+togaf:LogicalTechnologyComponent
+    a owl:Class ;
+    rdfs:label "Logical Technology Component" ;
+    rdfs:comment "An encapsulation of technology infrastructure that is independent of a particular implementation." ;
+    msk:togafDomain "Technology Architecture" ;
+    msk:figureRef "30-7" .
+
+togaf:PhysicalTechnologyComponent
+    a owl:Class ;
+    rdfs:label "Physical Technology Component" ;
+    rdfs:comment "A specific technology infrastructure product or product-release." ;
+    msk:togafDomain "Technology Architecture" ;
+    msk:figureRef "30-7" .
+
+# ============================================================
+# RELATIONSHIPS — MOTIVATIONAL CHAIN (Figure 30-7)
+# ============================================================
+
+togaf:driverCreatesGoal
+    a owl:ObjectProperty ;
+    rdfs:label "Creates" ;
+    rdfs:domain togaf:Driver ;
+    rdfs:range togaf:Goal ;
+    msk:figureRef "30-7" .
+
+togaf:driverMotivatesCourseOfAction
+    a owl:ObjectProperty ;
+    rdfs:label "Motivates" ;
+    rdfs:domain togaf:Driver ;
+    rdfs:range togaf:CourseOfAction ;
+    msk:figureRef "30-7" .
+
+togaf:goalIsMadeSpecificByObjective
+    a owl:ObjectProperty ;
+    rdfs:label "Is made specific by" ;
+    rdfs:domain togaf:Goal ;
+    rdfs:range togaf:Objective ;
+    msk:figureRef "30-7" .
+
+togaf:goalAddressesCourseOfAction
+    a owl:ObjectProperty ;
+    rdfs:label "Addresses" ;
+    rdfs:domain togaf:Goal ;
+    rdfs:range togaf:CourseOfAction ;
+    msk:figureRef "30-7" .
+
+togaf:goalIsRealizedByCourseOfAction
+    a owl:ObjectProperty ;
+    rdfs:label "Is realized by" ;
+    rdfs:domain togaf:Goal ;
+    rdfs:range togaf:CourseOfAction ;
+    msk:figureRef "30-7" .
+
+togaf:objectiveIsTrackedAgainstMeasure
+    a owl:ObjectProperty ;
+    rdfs:label "Is tracked against" ;
+    rdfs:domain togaf:Objective ;
+    rdfs:range togaf:Measure ;
+    msk:figureRef "30-7" .
+
+togaf:measureSetsPerformanceCriteriaFor
+    a owl:ObjectProperty ;
+    rdfs:label "Sets performance criteria for" ;
+    rdfs:domain togaf:Measure ;
+    rdfs:range togaf:Objective ;
+    msk:figureRef "30-7" .
+
+togaf:courseOfActionRealizes
+    a owl:ObjectProperty ;
+    rdfs:label "Realizes" ;
+    rdfs:domain togaf:CourseOfAction ;
+    rdfs:range togaf:Goal ;
+    msk:figureRef "30-7" .
+
+# ============================================================
+# RELATIONSHIPS — CAPABILITY AND WORK PACKAGE (Figure 30-7)
+# ============================================================
+
+togaf:workPackageDeliversCapability
+    a owl:ObjectProperty ;
+    rdfs:label "Delivers" ;
+    rdfs:domain togaf:WorkPackage ;
+    rdfs:range togaf:Capability ;
+    msk:figureRef "30-7" ;
+    msk:miskatonicNote "Absence of this relationship is the primary Capability Collision Bureau finding." .
+
+togaf:capabilityIsDeliveredByWorkPackage
+    a owl:ObjectProperty ;
+    rdfs:label "Is delivered by" ;
+    rdfs:domain togaf:Capability ;
+    rdfs:range togaf:WorkPackage ;
+    owl:inverseOf togaf:workPackageDeliversCapability ;
+    msk:figureRef "30-7" .
+
+togaf:businessCapabilityDecomposesBusinessCapability
+    a owl:ObjectProperty ;
+    rdfs:label "Decomposes" ;
+    rdfs:domain togaf:BusinessCapability ;
+    rdfs:range togaf:BusinessCapability ;
+    msk:figureRef "30-7" ;
+    msk:sourceNote "Decomposition and inverse added in cadmiumkitty v2.0.0; absent in TOGAF 9.2 Figure 30-7 directly." .
+
+togaf:businessCapabilityIsUsedByOrganizationUnit
+    a owl:ObjectProperty ;
+    rdfs:label "Is used by" ;
+    rdfs:domain togaf:BusinessCapability ;
+    rdfs:range togaf:OrganizationUnit ;
+    msk:figureRef "30-7" ;
+    msk:sourceNote "Fixed inconsistent naming from TOGAF 9.2 section 30.7 per cadmiumkitty v2.0.0." .
+
+togaf:organizationUnitDeliversBusinessCapability
+    a owl:ObjectProperty ;
+    rdfs:label "Delivers" ;
+    rdfs:domain togaf:OrganizationUnit ;
+    rdfs:range togaf:BusinessCapability ;
+    msk:figureRef "30-7" .
+
+togaf:businessCapabilityIsOperationalizedByValueStream
+    a owl:ObjectProperty ;
+    rdfs:label "Is operationalized by" ;
+    rdfs:domain togaf:BusinessCapability ;
+    rdfs:range togaf:ValueStream ;
+    msk:figureRef "30-7" ;
+    msk:miskatonicNote "Value Stream typing conditional. Vril qualification prompt gates this relationship declaration." .
+
+togaf:valueStreamOperationalizesBusinessCapability
+    a owl:ObjectProperty ;
+    rdfs:label "Operationalizes" ;
+    rdfs:domain togaf:ValueStream ;
+    rdfs:range togaf:BusinessCapability ;
+    owl:inverseOf togaf:businessCapabilityIsOperationalizedByValueStream ;
+    msk:figureRef "30-7" .
+
+togaf:valueStreamIsTriggeredByEvent
+    a owl:ObjectProperty ;
+    rdfs:label "Is triggered by" ;
+    rdfs:domain togaf:ValueStream ;
+    rdfs:range togaf:Event ;
+    msk:figureRef "30-7" .
+
+togaf:valueStreamInvolvesRole
+    a owl:ObjectProperty ;
+    rdfs:label "Involves" ;
+    rdfs:domain togaf:ValueStream ;
+    rdfs:range togaf:Role ;
+    msk:figureRef "30-7" .
+
+# ============================================================
+# RELATIONSHIPS — BUSINESS SERVICE CHAIN (Figure 30-7)
+# ============================================================
+
+togaf:organizationUnitDeliversBusinessService
+    a owl:ObjectProperty ;
+    rdfs:label "Delivers" ;
+    rdfs:domain togaf:OrganizationUnit ;
+    rdfs:range togaf:BusinessService ;
+    msk:figureRef "30-7" .
+
+togaf:actorConsumesBusinessService
+    a owl:ObjectProperty ;
+    rdfs:label "Consumes" ;
+    rdfs:domain togaf:Actor ;
+    rdfs:range togaf:BusinessService ;
+    msk:figureRef "30-7" .
+
+togaf:businessServiceIsRealizedByProcess
+    a owl:ObjectProperty ;
+    rdfs:label "Is realized by" ;
+    rdfs:domain togaf:BusinessService ;
+    rdfs:range togaf:Process ;
+    msk:figureRef "30-7" .
+
+togaf:processOrchestatesAndOrDecomposesBusinessService
+    a owl:ObjectProperty ;
+    rdfs:label "Orchestrates, Decomposes" ;
+    rdfs:domain togaf:Process ;
+    rdfs:range togaf:BusinessService ;
+    msk:figureRef "30-7" ;
+    msk:sourceNote "AndOr collapsed convention from cadmiumkitty v2.0.0." .
+
+togaf:processIsGuidedByControl
+    a owl:ObjectProperty ;
+    rdfs:label "Is guided by" ;
+    rdfs:domain togaf:Process ;
+    rdfs:range togaf:Control ;
+    msk:figureRef "30-7" .
+
+togaf:controlEnsuresCorrectOperationOfProcess
+    a owl:ObjectProperty ;
+    rdfs:label "Ensures correct operation of" ;
+    rdfs:domain togaf:Control ;
+    rdfs:range togaf:Process ;
+    owl:inverseOf togaf:processIsGuidedByControl ;
+    msk:figureRef "30-7" .
+
+togaf:contractGovernsMeasuresAndOrServiceQuality
+    a owl:ObjectProperty ;
+    rdfs:label "Governs, measures" ;
+    rdfs:domain togaf:Contract ;
+    rdfs:range togaf:ServiceQuality ;
+    msk:figureRef "30-7" ;
+    msk:sourceNote "AndOr collapsed convention from cadmiumkitty v2.0.0." .
+
+# ============================================================
+# RELATIONSHIPS — DATA ARCHITECTURE CHAIN (Figure 30-7)
+# ============================================================
+
+togaf:dataEntityResidesWithinLogicalDataComponent
+    a owl:ObjectProperty ;
+    rdfs:label "Resides within" ;
+    rdfs:domain togaf:DataEntity ;
+    rdfs:range togaf:LogicalDataComponent ;
+    msk:figureRef "30-7" .
+
+togaf:logicalDataComponentEncapsulatesDataEntity
+    a owl:ObjectProperty ;
+    rdfs:label "Encapsulates" ;
+    rdfs:domain togaf:LogicalDataComponent ;
+    rdfs:range togaf:DataEntity ;
+    owl:inverseOf togaf:dataEntityResidesWithinLogicalDataComponent ;
+    msk:figureRef "30-7" .
+
+togaf:logicalDataComponentIsRealizedByPhysicalDataComponent
+    a owl:ObjectProperty ;
+    rdfs:label "Is realized by" ;
+    rdfs:domain togaf:LogicalDataComponent ;
+    rdfs:range togaf:PhysicalDataComponent ;
+    msk:figureRef "30-7" .
+
+togaf:physicalDataComponentRealizesLogicalDataComponent
+    a owl:ObjectProperty ;
+    rdfs:label "Realizes" ;
+    rdfs:domain togaf:PhysicalDataComponent ;
+    rdfs:range togaf:LogicalDataComponent ;
+    owl:inverseOf togaf:logicalDataComponentIsRealizedByPhysicalDataComponent ;
+    msk:figureRef "30-7" .
+
+togaf:dataEntityIsAccessedAndUpdatedThroughApplicationService
+    a owl:ObjectProperty ;
+    rdfs:label "Is accessed and updated through" ;
+    rdfs:domain togaf:DataEntity ;
+    rdfs:range togaf:ApplicationService ;
+    msk:figureRef "30-7" .
+
+togaf:dataEntityIsSuppliedOrConsumedByApplicationService
+    a owl:ObjectProperty ;
+    rdfs:label "Is supplied or consumed by" ;
+    rdfs:domain togaf:DataEntity ;
+    rdfs:range togaf:ApplicationService ;
+    msk:figureRef "30-7" .
+
+togaf:informationSystemServiceIsUsedByDataEntity
+    a owl:ObjectProperty ;
+    rdfs:label "Is used by" ;
+    rdfs:domain togaf:InformationSystemService ;
+    rdfs:range togaf:DataEntity ;
+    msk:figureRef "30-7" ;
+    msk:sourceNote "Fixed inconsistent naming from TOGAF 9.2 section 30.7 per cadmiumkitty v2.0.0." .
+
+togaf:logicalApplicationComponentIsUsedByLogicalDataComponent
+    a owl:ObjectProperty ;
+    rdfs:label "Is used by" ;
+    rdfs:domain togaf:LogicalApplicationComponent ;
+    rdfs:range togaf:LogicalDataComponent ;
+    msk:figureRef "30-7" ;
+    msk:sourceNote "Fixed inconsistent naming from TOGAF 9.2 section 30.7 per cadmiumkitty v2.0.0." .
+
+# ============================================================
+# RELATIONSHIPS — APPLICATION ARCHITECTURE CHAIN (Figure 30-7)
+# ============================================================
+
+togaf:applicationServiceIsRealizedThroughLogicalApplicationComponent
+    a owl:ObjectProperty ;
+    rdfs:label "Is realized through" ;
+    rdfs:domain togaf:ApplicationService ;
+    rdfs:range togaf:LogicalApplicationComponent ;
+    msk:figureRef "30-7" .
+
+togaf:logicalApplicationComponentImplementsApplicationService
+    a owl:ObjectProperty ;
+    rdfs:label "Implements" ;
+    rdfs:domain togaf:LogicalApplicationComponent ;
+    rdfs:range togaf:ApplicationService ;
+    owl:inverseOf togaf:applicationServiceIsRealizedThroughLogicalApplicationComponent ;
+    msk:figureRef "30-7" .
+
+togaf:logicalApplicationComponentIsRealizedByPhysicalApplicationComponent
+    a owl:ObjectProperty ;
+    rdfs:label "Is realized by" ;
+    rdfs:domain togaf:LogicalApplicationComponent ;
+    rdfs:range togaf:PhysicalApplicationComponent ;
+    msk:figureRef "30-7" .
+
+togaf:physicalApplicationComponentRealizesLogicalApplicationComponent
+    a owl:ObjectProperty ;
+    rdfs:label "Realizes" ;
+    rdfs:domain togaf:PhysicalApplicationComponent ;
+    rdfs:range togaf:LogicalApplicationComponent ;
+    owl:inverseOf togaf:logicalApplicationComponentIsRealizedByPhysicalApplicationComponent ;
+    msk:figureRef "30-7" .
+
+togaf:applicationServiceIsServedByLogicalTechnologyComponent
+    a owl:ObjectProperty ;
+    rdfs:label "Is served by" ;
+    rdfs:domain togaf:ApplicationService ;
+    rdfs:range togaf:LogicalTechnologyComponent ;
+    msk:figureRef "30-7" .
+
+togaf:logicalApplicationComponentUsesApplicationService
+    a owl:ObjectProperty ;
+    rdfs:label "Uses" ;
+    rdfs:domain togaf:LogicalApplicationComponent ;
+    rdfs:range togaf:ApplicationService ;
+    msk:figureRef "30-7" .
+
+togaf:applicationServiceAutomatesSomeOrAllOfBusinessService
+    a owl:ObjectProperty ;
+    rdfs:label "Automates some or all of" ;
+    rdfs:domain togaf:ApplicationService ;
+    rdfs:range togaf:BusinessService ;
+    msk:figureRef "30-7" .
+
+togaf:businessServiceIsProvidedToApplicationService
+    a owl:ObjectProperty ;
+    rdfs:label "Is provided to" ;
+    rdfs:domain togaf:BusinessService ;
+    rdfs:range togaf:ApplicationService ;
+    msk:figureRef "30-7" .
+
+# ============================================================
+# RELATIONSHIPS — TECHNOLOGY ARCHITECTURE CHAIN (Figure 30-7)
+# ============================================================
+
+togaf:technologyServiceIsImplementedOnLogicalTechnologyComponent
+    a owl:ObjectProperty ;
+    rdfs:label "Is implemented on" ;
+    rdfs:domain togaf:TechnologyService ;
+    rdfs:range togaf:LogicalTechnologyComponent ;
+    msk:figureRef "30-7" .
+
+togaf:logicalTechnologyComponentServesApplicationService
+    a owl:ObjectProperty ;
+    rdfs:label "Serves" ;
+    rdfs:domain togaf:LogicalTechnologyComponent ;
+    rdfs:range togaf:ApplicationService ;
+    msk:figureRef "30-7" .
+
+togaf:logicalTechnologyComponentIsRealizedByPhysicalTechnologyComponent
+    a owl:ObjectProperty ;
+    rdfs:label "Is realized by" ;
+    rdfs:domain togaf:LogicalTechnologyComponent ;
+    rdfs:range togaf:PhysicalTechnologyComponent ;
+    msk:figureRef "30-7" .
+
+togaf:physicalTechnologyComponentRealizesLogicalTechnologyComponent
+    a owl:ObjectProperty ;
+    rdfs:label "Realizes" ;
+    rdfs:domain togaf:PhysicalTechnologyComponent ;
+    rdfs:range togaf:LogicalTechnologyComponent ;
+    owl:inverseOf togaf:logicalTechnologyComponentIsRealizedByPhysicalTechnologyComponent ;
+    msk:figureRef "30-7" .
+
+togaf:physicalTechnologyComponentProvidesplatformForPhysicalApplicationComponent
+    a owl:ObjectProperty ;
+    rdfs:label "Provides platform for" ;
+    rdfs:domain togaf:PhysicalTechnologyComponent ;
+    rdfs:range togaf:PhysicalApplicationComponent ;
+    msk:figureRef "30-7" .
+
+togaf:physicalTechnologyComponentIsSuppliedByTechnologyService
+    a owl:ObjectProperty ;
+    rdfs:label "Is supplied by" ;
+    rdfs:domain togaf:PhysicalTechnologyComponent ;
+    rdfs:range togaf:TechnologyService ;
+    msk:figureRef "30-7" .
+
+togaf:technologyServiceServesLogicalApplicationComponent
+    a owl:ObjectProperty ;
+    rdfs:label "Serves" ;
+    rdfs:domain togaf:TechnologyService ;
+    rdfs:range togaf:LogicalApplicationComponent ;
+    msk:figureRef "30-7" .
+
+# ============================================================
+# MISKATONIC GOVERNANCE ANNOTATIONS
+# msk: namespace carries platform-specific metadata
+# These do not modify TOGAF semantics.
+# They annotate constructs with Miskatonic operational context.
+# ============================================================
+
+msk:togafDomain
+    a owl:AnnotationProperty ;
+    rdfs:label "TOGAF Domain" ;
+    rdfs:comment "The TOGAF architecture domain this construct belongs to." .
+
+msk:togafSubDomain
+    a owl:AnnotationProperty ;
+    rdfs:label "TOGAF Sub-Domain" ;
+    rdfs:comment "The sub-domain within the TOGAF architecture domain." .
+
+msk:figureRef
+    a owl:AnnotationProperty ;
+    rdfs:label "Figure Reference" ;
+    rdfs:comment "The TOGAF 9.2 chapter 30 figure that declares this construct or relationship." .
+
+msk:miskatonicPrimary
+    a owl:AnnotationProperty ;
+    rdfs:label "Miskatonic Primary Construct" ;
+    rdfs:comment "True if this construct appears as a primary TOGAF construct in the Miskatonic Ossuary M&A corpus frontmatter." .
+
+msk:miskatonicNote
+    a owl:AnnotationProperty ;
+    rdfs:label "Miskatonic Governance Note" ;
+    rdfs:comment "Platform-specific governance note for this construct within Miskatonic." .
+
+msk:sourceNote
+    a owl:AnnotationProperty ;
+    rdfs:label "Source Note" ;
+    rdfs:comment "Notes deviations from TOGAF 9.2 as published, inherited from cadmiumkitty v2.0.0 or introduced by Miskatonic." .
+
+msk:forkGovernanceRef
+    a owl:AnnotationProperty ;
+    rdfs:label "Fork Governance Reference" ;
+    rdfs:comment "URI of the FORK-GOVERNANCE.md document for this fork." .
+
+msk:phaseIntroduced
+    a owl:AnnotationProperty ;
+    rdfs:label "Miskatonic Phase Introduced" ;
+    rdfs:comment "The Miskatonic build phase in which this artifact was introduced." .
+
+msk:knownGaps
+    a owl:AnnotationProperty ;
+    rdfs:label "Known Gaps" ;
+    rdfs:comment "Documented gaps between this fork and the complete TOGAF 9.2 specification." .
